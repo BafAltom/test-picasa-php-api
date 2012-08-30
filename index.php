@@ -17,7 +17,7 @@ try {
     $userFeed = $gp->getUserFeed("default");
     foreach ($userFeed as $userEntry) {
     	//var_dump($userEntry);
-    	echo "<br/>";
+/*    	echo "<br/>";
         echo $userEntry->title->text . " ; id = " . $userEntry->id->text . "<br />\n";
         $query = $gp->newAlbumQuery();
 
@@ -28,7 +28,7 @@ try {
 		foreach ($albumFeed as $albumEntry) {
     		echo "\t" . $albumEntry->title->text . "<br />\n";
 		}
-    }
+*/    }
 } catch (Zend_Gdata_App_HttpException $e) {
     echo "Error: " . $e->getMessage() . "<br />\n";
     if ($e->getResponse() != null) {
@@ -45,6 +45,3 @@ try {
 }
 
 ?>
-
-
-<p>Hello Picasa!</p>
