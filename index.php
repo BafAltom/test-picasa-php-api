@@ -15,20 +15,22 @@ $gp = new Zend_Gdata_Photos($client, "");
 
 try {
     $userFeed = $gp->getUserFeed("default");
-    foreach ($userFeed as $userEntry) {
-    	//var_dump($userEntry);
-/*    	echo "<br/>";
-        echo $userEntry->title->text . " ; id = " . $userEntry->id->text . "<br />\n";
+    foreach ($userFeed as $albumEntry) {
+    	echo "<br/>";
+        echo "Album name : " . $albumEntry->title->text ./* " ; id = " . $albumEntry->getGPhotoId() . */"<br />\n";
         $query = $gp->newAlbumQuery();
 
 		$query->setUser("default");
-		$query->setAlbumId("5741198621220207009");
+		$query->setAlbumId($albumEntry->getGPhotoId());
 
 		$albumFeed = $gp->getAlbumFeed($query);
-		foreach ($albumFeed as $albumEntry) {
-    		echo "\t" . $albumEntry->title->text . "<br />\n";
+		foreach ($albumFeed as $photoEntry) {
+    		echo "--> " . $photoEntry->title->text /*. " ; id = " . $photoEntry->getGPhotoId()*/;
+            $mediaContentArray = $photoEntry->getMediaGroup()->getContent();
+            ?><a href="<?php echo $mediaContentArray[0]->getUrl(); ?>">(link)</a> <?php
+            echo "<br/>";
 		}
-*/    }
+    }
 } catch (Zend_Gdata_App_HttpException $e) {
     echo "Error: " . $e->getMessage() . "<br />\n";
     if ($e->getResponse() != null) {
